@@ -1,0 +1,33 @@
+#include "HSPCL64.as"
+	HCLinit
+	HCLSetDevice 0//ここを1,2とかえてgpuを選択
+	prg=HCLCreateProgram("SinCosX.cl")//OpenCLのコードが書かれたファイル。コンパイルもここで
+	krn=HCLCreateKernel(prg,"sweep_trig_4outs")//"SinCosX.cl"にかかれた関数をもってくる
+	txtname="sin","cos","native_sin","native_cos"
+	
+	n=16777216
+	dim64 clmemA,4
+		repeat 4
+		clmem_A.cnt=HCLCreateBuffer(n*4)//指定はbyte数で
+		HCLSetKernel krn,cnt,clmem_A.cnt//OpenCLコードの"sweep_trig_4outs"に引数を適応
+		loop
+	
+	ccnt=0
+
+*main
+	mes "計算start"+ccnt+""
+	HCLSetKernel krn,4,ccnt
+	HCLDoKrn1 krn,n,256
+
+		repeat 4
+		HCLdim_i32FromBuffer hout,clmem_A.cnt
+		bsave ""+ccnt+"_"+txtname.cnt+"",hout
+		loop
+	
+	mes "計算end"
+	ccnt++
+	wait 1
+	if ccnt==256:end
+	goto*main
+	
+	stop
