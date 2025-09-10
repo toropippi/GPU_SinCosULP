@@ -1,0 +1,4 @@
+1_SinCos全探索バイナリ生成　の結果をGPUごと各フォルダにまとめこのディレクトリにおく
+
+python peek_trig_result.py --dir "バイナリファイルがあるディレクトリ名"
+python compare_trig_dirs.py "RTX2080Ti_1_win" "RTX2080Ti_0_win" --limit 4000
