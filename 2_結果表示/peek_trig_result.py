@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# 検証 2：SFU 版の誤差はベンダで違うか？
 """
 peek+compare (ordered print for human reading):
   入力した x（float or 0x...）に対応する 1 点を、

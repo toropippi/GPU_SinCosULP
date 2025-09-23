@@ -1,4 +1,24 @@
 1_SinCos全探索バイナリ生成　の結果をGPUごと各フォルダにまとめこのディレクトリにおく
 
-python peek_trig_result.py --dir "バイナリファイルがあるディレクトリ名"
+
+・手動比較
+python peek_trig_result.py --dir "RTX5090_win"
+
+・バイナリ一致か確認。2つのディレクトリを比較
 python compare_trig_dirs.py "RTX2080Ti_1_win" "RTX2080Ti_0_win" --limit 4000
+
+・区間ULP平均のグラフをつくる。bars_native_sin_ulp.pngが出力
+python ulp_hist_native.py --dir intelUHD770_win --pi-multiple 1000000 --bins 40000
+
+・絶対誤差のグラフをつくる。bars_native_sin_abs.pngが出力
+python abs_hist_native.py --dir RTX5090_win --pi-multiple 1 --bins 400
+python abs_hist_native.py --dir intelUHD770_win --pi-multiple 1 --bins 400
+python abs_hist_native.py --dir gfx1036_win --pi-multiple 1 --bins 400
+
+python abs_hist_native.py --dir RTX5090_win --pi-multiple 100 --bins 1000
+python abs_hist_native.py --dir intelUHD770_win --pi-multiple 100 --bins 1000
+python abs_hist_native.py --dir gfx1036_win --pi-multiple 100 --bins 1000
+
+python abs_hist_native.py --dir RTX5090_win --pi-multiple 1000000 --bins 1000
+python abs_hist_native.py --dir intelUHD770_win --pi-multiple 1000000 --bins 1000
+python abs_hist_native.py --dir gfx1036_win --pi-multiple 1000000 --bins 1000
