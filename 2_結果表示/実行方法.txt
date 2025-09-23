@@ -22,3 +22,14 @@ python abs_hist_native.py --dir gfx1036_win --pi-multiple 100 --bins 1000
 python abs_hist_native.py --dir RTX5090_win --pi-multiple 1000000 --bins 1000
 python abs_hist_native.py --dir intelUHD770_win --pi-multiple 1000000 --bins 1000
 python abs_hist_native.py --dir gfx1036_win --pi-multiple 1000000 --bins 1000
+
+・非正規化数
+python Subnormalinputs.py --dir gfx1036_win
+
+・1 - (sin^2 + cos^2) の“単位円崩れ量”
+python unit_circle_collapse_bars.py --dir RTX5090_win --pi-multiple 10 --metric ulp  --bins 1000
+python unit_circle_collapse_bars.py --dir RTX5090_win --pi-multiple 10 --metric abs --bins 1000
+python unit_circle_collapse_bars.py --dir intelUHD770_win --pi-multiple 10 --metric ulp  --bins 1000
+python unit_circle_collapse_bars.py --dir intelUHD770_win --pi-multiple 10 --metric abs --bins 1000
+python unit_circle_collapse_bars.py --dir gfx1036_win --pi-multiple 10 --metric ulp  --bins 1000
+python unit_circle_collapse_bars.py --dir gfx1036_win --pi-multiple 10 --metric abs --bins 1000
