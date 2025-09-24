@@ -1,8 +1,26 @@
-1_SinCos全探索バイナリ生成　の結果をGPUごと各フォルダにまとめこのディレクトリにおく
+①
+"1_SinCos全探索バイナリ生成" のdoubleSample.exeを実行して0～255の sin cosの正解データを得る
+これを "2_結果表示" のdoubleSampleフォルダにいれる(ディレクトリ構成例2.png)
+
+②
+"1_SinCos全探索バイナリ生成" のsincos誤差調査HCLSetDevice0.exeを実行しsin cos native_sin native_cosの結果を得る(これだけで64GB)
+
+③
+複数GPUがある場合
+HCLGetDeviceInfo.exe
+でGPU番号とGPU名を確認の上
+sincos誤差調査HCLSetDevice0.exe
+から実行していく。
+"2_結果表示"の各フォルダに結果をいれておく。(ディレクトリ構成例.png)
+
+④
+"2_結果表示"の手動比較をする。(結果.png)
+以下コマンド例
 
 
 ・手動比較
 python peek_trig_result.py --dir "RTX5090_win"
+python peek_trig_result.py --dir "intelUHD770_win"
 
 ・バイナリ一致か確認。2つのディレクトリを比較
 python compare_trig_dirs.py "RTX2080Ti_1_win" "RTX2080Ti_0_win" --limit 4000
@@ -33,3 +51,6 @@ python unit_circle_collapse_bars.py --dir intelUHD770_win --pi-multiple 10 --met
 python unit_circle_collapse_bars.py --dir intelUHD770_win --pi-multiple 10 --metric abs --bins 1000
 python unit_circle_collapse_bars.py --dir gfx1036_win --pi-multiple 10 --metric ulp  --bins 1000
 python unit_circle_collapse_bars.py --dir gfx1036_win --pi-multiple 10 --metric abs --bins 1000
+
+・自由引数入力一括変換
+python extract_gpu_outputs.py --args-file args.txt --output outputs.tsv
